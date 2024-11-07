@@ -15,6 +15,7 @@
 <body>
     <img src="imagenes/LogoMibocata.png" alt="">
     <section>
+        <p id="errorMsg"></p> <!-- Mensaje de error que proporciona el javascript -->
         <div id="CuadroLogin">
             <h2>¡Bienvenido!</h2>
             <form id="loginForm" onsubmit="event.preventDefault(); loginUser();">
@@ -23,9 +24,10 @@
                 <button type="submit">Login</button>
             </form>
         </div>
+        
     </section>
 
-    <p id="errorMsg" style="color: red;"></p> <!-- Mensaje de error aquí -->
+    
 
     
 

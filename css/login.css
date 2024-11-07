@@ -76,3 +76,11 @@ section {
     width: 680px;
     height: 840px;
 }
+p {
+    color: red;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 300;
+}

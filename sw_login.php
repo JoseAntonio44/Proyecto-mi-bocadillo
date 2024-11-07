@@ -8,15 +8,6 @@ header('Content-Type: application/json');
 session_start();
 require 'inc/conexion.php';
 
-/*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    login();
-} else {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Método no permitido.'
-    ]);
-    exit;
-}*/
 
 login();
 function login() {
@@ -48,7 +39,7 @@ function login() {
         } else {
             echo json_encode([
                 'success' => false,
-                'message' => "Usuario no encontrado."
+                'message' => "Usuario incorrecto."
             ]);
         }
     } else {
