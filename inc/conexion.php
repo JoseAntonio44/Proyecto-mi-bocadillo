@@ -13,7 +13,7 @@ class DB {
 
 			
 			$host = 'localhost';
-			$dbname = 'bocatav5';
+			$dbname = 'bocata';
 			$user = 'root';
 			$pass = '';
 

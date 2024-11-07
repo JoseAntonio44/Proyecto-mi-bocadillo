@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 session_start();
 require 'inc/conexion.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+/*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     login();
 } else {
     echo json_encode([
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'message' => 'Método no permitido.'
     ]);
     exit;
-}
+}*/
 
 function login() {
     $data = json_decode(file_get_contents('php://input'), true);
