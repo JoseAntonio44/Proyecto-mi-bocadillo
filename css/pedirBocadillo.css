@@ -1,0 +1,73 @@
+body{
+    display: flex;
+    background-image: url(../imagenes/paredblanca.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+img{
+    height: 64px;
+}
+#barraSuperior{
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 90%;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+#botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+}
+
+#botonesCentro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 80%;
+    width: 70%;
+    margin-top: 40px;
+}
+#botonesCentro #pedir{
+    display: flex;
+    flex-direction: row;
+}
+#botonesCentro button{
+    margin: 10px;
+    width: 200px;
+    height: 100px;
+}
+#botonesLaterales{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:rgba(255, 255, 255, 0.8);
+    height: fit-content;
+    width: 172px;
+    margin-top: 40px;
+}
+#botonesLaterales button{
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+}
+#botonesLaterales form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pedirBocadillo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <title>Pedir Bocata</title>
+</head>
+
+<body>
+    <section id="barraSuperior">
+        <img src="imagenes/LogoMibocata.png" alt="">
+        <img src="imagenes/usuario.png" alt="">
+    </section>
+    <section id="botones">
+        <div id="botonesLaterales">
+            <form id="cambiarPagina" onsubmit="event.preventDefault();">
+                <button id="paginaPedido" type="submit"></button>
+                <button id="calendarioBocadillos" type="submit"></button>
+            </form>
+        </div>
+        <div id="botonesCentro">
+            <p>Selecciona tu bocadillo</p>
+            <form id="pedirBocadillo" onsubmit="event.preventDefault();">
+                <button id="bocadilloFrio" type="submit"></button>
+                <button id="bocadilloCaliente" type="submit"></button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
