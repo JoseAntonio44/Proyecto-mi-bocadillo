@@ -60,3 +60,54 @@ section .container{
     margin-top: 50px;
     border-radius: 10px;
 }
+button{
+    border-color: transparent;
+    background-color: transparent;
+}
+#botonesLaterales{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: fit-content;
+    height: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+
+}
+
+#botonesLaterales button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#botonesCentrales{
+    width: fit-content;
+}
+
+#botonesCentrales #botonBocadilloFrio{
+    background-color: #558B2F;
+    margin-right: 30px;
+    margin-left: 150px;
+}
+
+#botonesCentrales #botonBocadilloCaliente{
+    background-color: #FF7700;
+    margin-left: 30px;
+    margin-right: 150px;
+}
+
+#botonesCentrales button{
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    margin-top: 100px;
+
+}
+#botonesCentrales p{
+    margin: 0;
+    margin-top: 10px;
+    font-size: 25px;
+}
