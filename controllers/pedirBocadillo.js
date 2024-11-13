@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Selecciona el botón de bocadillo frío
+    
     const botonFrio = document.getElementById("botonBocadilloFrio");
 
-    // Maneja el clic en el botón de bocadillo frío
+    //clic en el botón de bocadillo frío
     botonFrio.addEventListener("click", function () {
-        // Muestra el cuadro de confirmación
+        
         const confirmacion = confirm("¿Deseas confirmar el pedido de bocadillo frío del día?");
         if (confirmacion) {
-            // Si el usuario confirma, realiza el pedido
             hacerPedido("frio");
         }
     });
