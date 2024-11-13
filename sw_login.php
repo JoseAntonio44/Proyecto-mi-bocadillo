@@ -25,7 +25,7 @@ function login() {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             // Comparamos la contraseña directamente
             if ($password === $user['password']) {
-                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['id_usuario'] = $user['email'];
                 echo json_encode([
                     'success' => true,
                     'message' => "Login exitoso. Bienvenido"
