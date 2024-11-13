@@ -11,6 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    //clic en el botón de bocadillo caliente
+    const botonCaliente = document.getElementById("botonBocadilloCaliente");
+    botonCaliente.addEventListener("click", function () {
+        const confirmacion = confirm("¿Deseas confirmar el pedido de bocadillo caliente del día?");
+        if (confirmacion) {
+            hacerPedido("caliente");
+        }
+    });
+
     function hacerPedido(tipo) {
         const url = "sw_pedirBocadillo.php";
         const data = { tipo_bocadillo: tipo };
