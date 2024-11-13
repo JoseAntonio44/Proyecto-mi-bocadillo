@@ -1,0 +1,113 @@
+body{
+    display: flex;
+    background-image: url(../imagenes/paredblanca.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+header > .container{
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+header > .container img{
+    height: 50px;
+    margin: 20px;
+}
+header > .container button{
+    border-color: transparent;
+    background-color: transparent;
+}
+
+header > .container div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    width: fit-content;
+}
+header > .container div p{
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+section{
+    flex-direction: row;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+section .container{
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+button{
+    border-color: transparent;
+    background-color: transparent;
+}
+#botonesLaterales{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: fit-content;
+    height: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+
+}
+
+#botonesLaterales button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#botonesCentrales{
+    width: fit-content;
+}
+
+#botonesCentrales #botonBocadilloFrio{
+    background-color: #558B2F;
+    margin-right: 30px;
+    margin-left: 150px;
+}
+
+#botonesCentrales #botonBocadilloCaliente{
+    background-color: #FF7700;
+    margin-left: 30px;
+    margin-right: 150px;
+}
+
+#botonesCentrales button{
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    margin-top: 100px;
+
+}
+#botonesCentrales p{
+    margin: 0;
+    margin-top: 10px;
+    font-size: 25px;
+}

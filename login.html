@@ -8,22 +8,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <script src="controllers/login.js"></script>
     <title>Login</title>
 </head>
 
 <body>
     <img src="imagenes/LogoMibocata.png" alt="">
     <section>
+        <p id="errorMsg"></p> <!-- Mensaje de error que proporciona el javascript -->
         <div id="CuadroLogin">
             <h2>¡Bienvenido!</h2>
-            <form>
-                <input type="text" placeholder="Usuario" required>
-                <input type="password" placeholder="Contraseña" required>
+            <form id="loginForm" onsubmit="event.preventDefault(); loginUser();">
+                <input type="text" placeholder="Usuario" id="Usuario" name="Usuario" required>
+                <input type="password" placeholder="Contraseña" id="contraseña" name="contraseña" required>
                 <button type="submit">Login</button>
             </form>
         </div>
+        
     </section>
 
+    
+
+    
 
 </body>
 
