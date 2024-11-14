@@ -10,11 +10,11 @@ $tipo_bocadillo = $data['tipo_bocadillo'] ?? null;
 if ($tipo_bocadillo) {
     //Convertir el tipo de bocadillo a 1 (frío) o 0 (caliente) 
     //ya que en la BD en la columna "frio" se almacena 1 para bocadillo frío y 0 para bocadillo caliente
-    $tipo_bocadillo_valor = ($tipo_bocadillo === "frio") ? 1 : 0;
+    
     $dia = date('l'); //Obtiene el día actual (En inglés)
 
     $pedido = new Pedido();
-    $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo_valor, $dia);
+    $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo, $dia);
 
     if ($resultado) {
         echo json_encode([
