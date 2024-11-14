@@ -8,10 +8,8 @@ $data = json_decode(file_get_contents('php://input'), true);
 $tipo_bocadillo = $data['tipo_bocadillo'] ?? null;
 
 if ($tipo_bocadillo) {
-    //Convertir el tipo de bocadillo a 1 (frío) o 0 (caliente) 
-    //ya que en la BD en la columna "frio" se almacena 1 para bocadillo frío y 0 para bocadillo caliente
-    
-    $dia = date('l'); //Obtiene el día actual (En inglés)
+    // Convertir el tipo de bocadillo a 1 (frío) o 0 (caliente)
+    $dia = date('l'); // Obtiene el día actual
 
     $pedido = new Pedido();
     $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo, $dia);
