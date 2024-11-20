@@ -62,5 +62,19 @@ class Pedido {
             return false;
         }
     }
+    public function traerBocadillos($dia){
+        $stmt = $this->db->prepare("
+        select nombre, frio 
+        from bocadillo
+        where dia = :dia
+    ");
+    $stmt->bindParam(':dia', $dia);
+    $stmt->execute();
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna un array asociativo con los resultados
+
+
+
+    }
 }
 ?>
