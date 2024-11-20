@@ -29,10 +29,6 @@ header > .container img{
     height: 50px;
     margin: 35px;
 }
-header > .container button{
-    border-color: transparent;
-    background-color: transparent;
-}
 
 header > .container div{
     display: flex;

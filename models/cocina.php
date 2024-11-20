@@ -28,5 +28,10 @@ class Cocina {
         
         
     }
+    public function listarBocadillosSemanales() {
+        $stmt = $this->db->prepare("SELECT * FROM bocadillo ORDER BY dia");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
