@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(json => {
             console.log(json)
             if(json.success){
-                document.getElementById('bocadilloFrio').innerHTML = `${json.data[0].nombre}`; 
-                document.getElementById('bocadilloCaliente').innerHTML = `${json.data[1].nombre}`;                             
+                document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre; 
+                document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;                             
             }
         })
         .catch(error => console.error("Error en la solicitud:", error));
