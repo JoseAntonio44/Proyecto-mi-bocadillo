@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 session_start();
-//require 'inc/auth.inc.php'; // Verifica autenticación
+require 'inc/auth.inc.php'; // Verifica autenticación
 require 'models/pedido.php'; // Incluye el modelo de Pedido
 
 $data = json_decode(file_get_contents('php://input'), true);

@@ -8,9 +8,9 @@ $data = json_decode(file_get_contents('php://input'), true);
 $tipo_bocadillo = $data['tipo_bocadillo'] ?? null;
 $hora = date('H:i');
 
-if ($hora >= '09:00' && $hora <= '18:00') {
+if ($hora >= '09:00' && $hora <= '22:00') {
     if ($tipo_bocadillo) {
-        // Convertir el tipo de bocadillo a 1 (frío) o 0 (caliente)
+
         $dia = date('l'); // Obtiene el día actual
 
         $pedido = new Pedido();
