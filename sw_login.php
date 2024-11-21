@@ -28,7 +28,8 @@ function login() {
                 $_SESSION['id_usuario'] = $user['email'];
                 echo json_encode([
                     'success' => true,
-                    'message' => "Login exitoso. Bienvenido"
+                    'message' => "Login exitoso. Bienvenido",
+                    'data' => $user['tipo_usuario'], $user['email']
                 ]);
             } else {
                 echo json_encode([

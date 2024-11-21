@@ -5,7 +5,7 @@ function loginUser() {
 
     // URL del servicio web de login
     const url = "sw_login.php";
-    
+
     const data = {
         Usuario: usuario,
         password: password
@@ -19,21 +19,26 @@ function loginUser() {
             "Content-Type": "application/json"
         }
     })
-    .then((response) => response.json())
-    .catch((error) => console.error("error", error))
-    .then(function (json){
-        console.log(json);
+        .then((response) => response.json())
+        .catch((error) => console.error("error", error))
+        .then(function (json) {
+            console.log(json);
 
-        // Verifica si el login fue exitoso
-        if (json.success) {
-            // Mostrar mensaje de éxito
-            alert(json.message);
-
-            // Redirige a la página principal en caso de login exitoso
-            window.location.href = "pedirBocadillo.html";
-        } else {
-            // Mostrar mensaje de error
-            document.getElementById("errorMsg").textContent = json.message;
-        }
-    })
+            //Verifica si el login fue exitoso
+            if (json.success) {
+                //Mostrar mensaje de éxito
+                alert(json.message);
+                if (json.data == null) {
+                    //Redirige a la página principal en caso de login exitoso
+                    window.location.href = "pedirBocadillo.html";
+                }
+                if (json.data == "Cocina") {
+                    //Redirige a la página de cocina en caso de login exitoso 
+                    window.location.href = "cocina.html";
+                }
+            } else {
+                //Mostrar mensaje de error
+                document.getElementById("errorMsg").textContent = json.message;
+            }
+        })
 }
