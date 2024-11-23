@@ -24,8 +24,12 @@ function mostrarBocadillos(){
         'message' => "Bocadillos del día mostrados correctamente.",
         'data' => $resultado
         ]);
+    }else{
+        echo json_encode([
+        'success' => false,
+        'message' => "No hay bocadillos el dia de hoy."
+        ]);
     }
-    header('Content-Type: application/json');
 }
 
 ?>
