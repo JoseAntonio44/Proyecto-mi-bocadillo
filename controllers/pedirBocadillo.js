@@ -51,6 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if(json.success){
                 document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre; 
                 document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;                             
+            }else{
+                document.getElementById('bocadilloFrio').innerHTML = "Bocadillo frío no disponible"; 
+                document.getElementById('bocadilloCaliente').innerHTML = "Bocadillo caliente no disponible";
             }
         })
         .catch(error => console.error("Error en la solicitud:", error));
