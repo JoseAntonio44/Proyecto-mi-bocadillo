@@ -7,6 +7,7 @@ header('Content-Type: application/json');
 session_start();
 
 require 'models/pedido.php';
+require 'inc/auth.inc.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 

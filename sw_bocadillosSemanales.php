@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 session_start();
 
-//require 'inc/auth.inc.php';
+require 'inc/auth.inc.php';
 require 'models/cocina.php';
 
 listarBocadillosSemanales();

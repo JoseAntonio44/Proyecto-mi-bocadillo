@@ -1,7 +1,10 @@
 <?php
+
 /**
-* Archivo que verifica que el usuario está identificado
-*/
+ * Archivo que verifica que el usuario está identificado
+ */
+session_start();
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Solo inicia la sesión si no está activa
 }
@@ -16,4 +19,3 @@ if (!isset($_SESSION["id_usuario"])) {
     echo $json_error;
     exit();
 }
-?>

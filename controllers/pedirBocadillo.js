@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //clic en el botón de bocadillo frío
     botonFrio.addEventListener("click", function () {
+        const getElementById = document.getElementById("exampleModal");
         
         const confirmacion = confirm("¿Deseas confirmar el pedido de bocadillo frío del día?");
         if (confirmacion) {
