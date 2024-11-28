@@ -76,5 +76,15 @@ class Pedido {
 
 
     }
+    public function traerNombre($id_alumno){
+        $stmt = $this->db->prepare("
+            select nombre
+            from alumno
+            where id_usuario = :id_usuario
+        ");
+        $stmt->bindParam(':id_usuario', $id_alumno);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
