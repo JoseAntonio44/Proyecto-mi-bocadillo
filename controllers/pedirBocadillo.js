@@ -55,4 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error en la solicitud:", error));
     }
+    mostrarNombre();
+    function mostrarNombre(){
+        const url = "sw_datosBasicos.php"; // Mandar json de js al php
+
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            console.log(json)
+            if(json.success){
+                document.getElementById('nombre_usuario').innerHTML = json.data[0].nombre;
+            }
+        })
+        .catch(error => console.error("Error en la solicitud:", error));
+    }
 });
