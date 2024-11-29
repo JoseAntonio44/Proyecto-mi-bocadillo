@@ -10,7 +10,7 @@ require_once 'inc/auth.inc.php';
 require 'models/pedido.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
-$action = isset($data['action']) ? $data['action'] : 'get';
+$action = isset($data['action']) ? $data['action'] : 'hacerPedido';
 
 
 if (!isset($_SESSION['id_usuario'])) {
