@@ -3,7 +3,7 @@
 /**
  * Archivo que verifica que el usuario está identificado
  */
-session_start();
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Solo inicia la sesión si no está activa

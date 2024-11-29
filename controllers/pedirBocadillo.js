@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     const botonFrio = document.getElementById("botonBocadilloFrio");
+
+    const url = "sw_pantallaBocadillo.php";
 
     //clic en el botón de bocadillo frío
     botonFrio.addEventListener("click", function () {
         const getElementById = document.getElementById("exampleModal");
-        
+
         const confirmacion = confirm("¿Deseas confirmar el pedido de bocadillo frío del día?");
         if (confirmacion) {
             hacerPedido("frio");
@@ -20,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function hacerPedido(tipo) {
-        const url = "sw_pedirBocadillo.php";
-        const data = { tipo_bocadillo: tipo };
+        const data = { tipo_bocadillo: tipo, action: "hacerPedido" };
 
         fetch(url, {
             method: "POST",
@@ -30,47 +31,75 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Content-Type": "application/json"
             }
         })
-        .then(response => response.json())
-        .then(json => {
-            if (json.success) {
-                alert("Pedido realizado con éxito: " + json.message);
-            } else {
-                alert("Error al realizar el pedido: " + json.message);
-            }
-        })
-        .catch(error => console.error("Error en la solicitud:", error));
+            .then(response => response.json())
+            .then(json => {
+                if (json.success) {
+                    alert("Pedido realizado con éxito: " + json.message);
+                } else {
+                    alert("Error al realizar el pedido: " + json.message);
+                }
+            })
+            .catch(error => console.error("Error en la solicitud:", error));
     }
 
     mostrarBocadillos();
-    function mostrarBocadillos(){
-        const url = "sw_mostrarBocadillos.php"; // Mandar json de js al php
-        
-        fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            console.log(json)
-            if(json.success){
-                document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre; 
-                document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;                             
-            }else{
-                document.getElementById('bocadilloFrio').innerHTML = "Bocadillo frío no disponible"; 
-                document.getElementById('bocadilloCaliente').innerHTML = "Bocadillo caliente no disponible";
+    function mostrarBocadillos() {
+        const data = { action: "mostrarBocadillos" };
+
+        fetch(url,
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
             }
-        })
-        .catch(error => console.error("Error en la solicitud:", error));
+        )
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                if (json.success) {
+                    document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre;
+                    document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;
+                } else {
+                    document.getElementById('bocadilloFrio').innerHTML = "Bocadillo frío no disponible";
+                    document.getElementById('bocadilloCaliente').innerHTML = "Bocadillo caliente no disponible";
+                }
+            })
+            .catch(error => console.error("Error en la solicitud:", error));
     }
     mostrarNombre();
-    function mostrarNombre(){
-        const url = "sw_datosBasicos.php"; // Mandar json de js al php
+    function mostrarNombre() {
+        const data = { action: "mostrarNombre" };
 
-        fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            console.log(json)
-            if(json.success){
-                document.getElementById('nombre_usuario').innerHTML = json.data[0].nombre;
-            }
-        })
-        .catch(error => console.error("Error en la solicitud:", error));
+        fetch(url,
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                if (json.success) {
+                    document.getElementById('nombre_usuario').innerHTML = json.data[0].nombre;
+                }
+            })
+            .catch(error => console.error("Error en la solicitud:", error));
     }
+    acceso();
+    function acceso() {
+        fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Json bocata: ", data);
+        if (!data.success) {
+            window.location.href = 'login.html';
+        }
+    })
+    .catch(error => console.error('Error al verificar autenticación:', error));
+    }
+    
 });
