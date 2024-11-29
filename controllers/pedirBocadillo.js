@@ -59,11 +59,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(json => {
                 console.log(json)
                 if (json.success) {
-                    document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre;
-                    document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;
-                } else {
-                    document.getElementById('bocadilloFrio').innerHTML = "Bocadillo frío no disponible";
-                    document.getElementById('bocadilloCaliente').innerHTML = "Bocadillo caliente no disponible";
+                    if(json.data.length >= 1) {
+                        
+                        if(json.data[0].disponible == 0) {
+                            document.getElementById('bocadilloFrio').innerHTML = "Bocadillo frío no disponible";
+                            document.getElementById('bocadilloCaliente').innerHTML = "Bocadillo caliente no disponible";
+                        }else{
+                            document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre;
+                            document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;
+                        }
+                    }
+                    document.getElementById('ingredientesFrio').innerHTML = json.data[0].ingredientes;
+                    document.getElementById('ingredientesCaliente').innerHTML = json.data[1].ingredientes;
+                    
+                    document.getElementById('alergenoFrio').innerHTML = json.data[0].id_alergeno;
+                    document.getElementById('alergenoCaliente').innerHTML = json.data[1].id_alergeno;
+
+                    document.getElementById('precioFrio').innerHTML = json.data[0].pvp;
+                    document.getElementById('precioCaliente').innerHTML = json.data[1].pvp;
+                    
+                
                 }
             })
             .catch(error => console.error("Error en la solicitud:", error));

@@ -64,7 +64,7 @@ class Pedido {
     }
     public function traerBocadillos(){
         $stmt = $this->db->prepare("
-        select nombre, frio 
+        select *
         from bocadillo
         where dia = DAYNAME(NOW());
     ");

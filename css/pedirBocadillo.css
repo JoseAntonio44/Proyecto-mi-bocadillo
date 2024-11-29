@@ -76,6 +76,7 @@ button{
 
 }
 
+
 #botonesLaterales button{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -83,6 +84,14 @@ button{
 
 #botonesCentrales{
     width: fit-content;
+    height: fit-content;
+}
+#botonesCentrales div{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 #botonesCentrales #botonBocadilloFrio{
