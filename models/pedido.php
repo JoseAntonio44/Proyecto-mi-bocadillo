@@ -72,10 +72,8 @@ class Pedido {
     $stmt->execute();
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna un array asociativo con los resultados
-
-
-
     }
+    
     public function traerNombre($id_alumno){
         $stmt = $this->db->prepare("
             select nombre
