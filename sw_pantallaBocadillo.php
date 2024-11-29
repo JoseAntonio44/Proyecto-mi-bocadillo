@@ -11,7 +11,6 @@ require 'models/pedido.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $action = isset($data['action']) ? $data['action'] : 'get';
-echo $_SESSION['id_usuario'];
 try {
     switch ($action) {
         case "hacerPedido":

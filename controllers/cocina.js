@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    listarPedidos();
+ 
 
+    const url = "sw_cocina.php";
+    listarPedidos();
     function listarPedidos() {
-        const url = "sw_listarPedidos.php"; // Mandar json de js al php
+        const data = { action: "listarPedidos"};
 
         fetch(url, {
-            method: "GET",
+            method: "POST",
+            body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -43,13 +46,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                 //Obtiene la fecha de la fila seleccionada
                                 var fechaPedido = json.data[index].fecha;
                                 console.log("Fecha seleccionada: " + fechaPedido);
-                            
+
                                 //Se manda la fecha al php
-                                var data = { fecha: fechaPedido };
+                                var data = { fecha: fechaPedido, action: "eliminarPedido" };
 
 
                                 //Hacer una promesa para eliminar el pedido que ha sido recogido
-                                fetch("sw_pedidoRecogido.php", {
+                                fetch(url, {
                                     method: "POST",
                                     body: JSON.stringify(data),
                                     headers: {
@@ -81,8 +84,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     mostrarBocadillosSemanales();
     function mostrarBocadillosSemanales() {
-        const url = "sw_bocadillosSemanales.php";
-        fetch(url)
+        const data = { action: "listarBocadillosSemanales" };
+        fetch(url,
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        )
             .then(response => response.json())
             .then(json => {
                 console.log(json);
@@ -110,5 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             })
+            .catch(error => console.error("Error en la solicitud:", error));
     }
 });
