@@ -62,9 +62,8 @@ try {
             break;
 
         case "mostrarBocadillos":
-            $dia = date('l'); // Obtiene el día actual
             $mostrarBocadillos = new Pedido();
-            $resultado = $mostrarBocadillos->traerBocadillos($dia);
+            $resultado = $mostrarBocadillos->traerBocadillos();
 
             if ($resultado) {
                 echo json_encode([

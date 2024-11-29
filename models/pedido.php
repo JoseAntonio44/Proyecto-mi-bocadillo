@@ -62,13 +62,12 @@ class Pedido {
             return false;
         }
     }
-    public function traerBocadillos($dia){
+    public function traerBocadillos(){
         $stmt = $this->db->prepare("
         select nombre, frio 
         from bocadillo
-        where dia = :dia
+        where dia = DAYNAME(NOW());
     ");
-    $stmt->bindParam(':dia', $dia);
     $stmt->execute();
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna un array asociativo con los resultados
