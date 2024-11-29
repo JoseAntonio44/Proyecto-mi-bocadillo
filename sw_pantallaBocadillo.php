@@ -30,6 +30,7 @@ try {
 
             if ($hora >= '09:00' && $hora <= '22:00') {
                 if ($tipo_bocadillo) {
+                    
                     $pedido = new Pedido();
                     $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo);
 

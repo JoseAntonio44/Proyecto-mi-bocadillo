@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error en la solicitud:", error));
     }
 
+    
 
     mostrarBocadillos();
     function mostrarBocadillos() {
@@ -84,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("Error en la solicitud:", error));
     }
+    
     mostrarNombre();
     function mostrarNombre() {
         const data = { action: "mostrarNombre" };
@@ -105,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("Error en la solicitud:", error));
     }
+
     acceso();
     function acceso() {
         const data = { action: "verificarAutenticacion" };
