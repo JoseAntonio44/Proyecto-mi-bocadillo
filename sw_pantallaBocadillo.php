@@ -34,7 +34,7 @@ try {
                     $dia = date('l'); // Obtiene el día actual
 
                     $pedido = new Pedido();
-                    $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo, $dia);
+                    $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo);
 
                     if ($resultado) {
                         echo json_encode([

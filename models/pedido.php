@@ -10,14 +10,13 @@ class Pedido {
     }
 
     //metodo para registrar un pedido automáticamente con el bocadillo del día
-    public function registrarPedidoDelDia($id_usuario, $tipo_bocadillo_valor, $dia) {
+    public function registrarPedidoDelDia($id_usuario, $tipo_bocadillo_valor) {
         //busca el bocadillo del día en la base de datos
         $stmt = $this->db->prepare("
             SELECT nombre, pvp 
             FROM bocadillo 
-            WHERE dia = :dia AND frio = :frio AND f_baja IS NULL
+            WHERE dia = DAYNAME(NOW()) AND frio = :frio AND f_baja IS NULL
         ");
-        $stmt->bindParam(':dia', $dia);
         $stmt->bindParam(':frio', $tipo_bocadillo_valor); // Bocadillo frío (1) o caliente (0)
         $stmt->execute();
 
