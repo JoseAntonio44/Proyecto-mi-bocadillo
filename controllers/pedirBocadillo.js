@@ -91,15 +91,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     acceso();
     function acceso() {
-        fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        console.log("Json bocata: ", data);
-        if (!data.success) {
-            window.location.href = 'login.html';
-        }
-    })
-    .catch(error => console.error('Error al verificar autenticación:', error));
+        const data = { action: "verificarAutenticacion" };
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Json bocata: ", data);
+                if (data.success) {
+                    // Usuario autenticado, permanece en la página
+                    console.log("Usuario autenticado.");
+                } else {
+                    // Redirige al login si no está autenticado
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => console.error("Error al verificar autenticación:", error));
     }
-    
+
 });

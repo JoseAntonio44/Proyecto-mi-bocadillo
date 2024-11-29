@@ -6,11 +6,21 @@ error_reporting(E_ALL);
 header('Content-Type: application/json');
 session_start();
 
-require 'inc/auth.inc.php';
+require_once 'inc/auth.inc.php';
 require 'models/pedido.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $action = isset($data['action']) ? $data['action'] : 'get';
+
+
+if (!isset($_SESSION['id_usuario'])) {
+    echo json_encode([
+        "success" => false,
+        "message" => "No tienes permiso para acceder a esta sección."
+    ]);
+}
+
+
 try {
     switch ($action) {
         case "hacerPedido":
@@ -86,6 +96,12 @@ try {
                     "msg" => "Nombre no encontrado"
                 ]);
             }
+            break;
+        case "verificarAutenticacion":
+            echo json_encode([
+                "success" => true,
+                "message" => "Usuario autenticado."
+            ]);
             break;
 
         default:
