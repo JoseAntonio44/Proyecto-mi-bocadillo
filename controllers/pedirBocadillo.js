@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error en la solicitud:", error));
     }
 
+
     mostrarBocadillos();
     function mostrarBocadillos() {
         const data = { action: "mostrarBocadillos" };
