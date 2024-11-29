@@ -6,6 +6,7 @@ class Pedido {
 
     public function __construct() {
         $this->db = DB::getInstance();
+        $this->db->exec("SET lc_time_names = 'es_ES';");
     }
 
     //metodo para registrar un pedido automáticamente con el bocadillo del día
