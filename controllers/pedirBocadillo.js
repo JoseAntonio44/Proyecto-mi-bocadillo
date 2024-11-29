@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const botonFrio = document.getElementById("botonBocadilloFrio");
 
-    const url = "http://localhost/mi_bocadillo/sw_pantallaBocadillo.php";
+    const url = "sw_pantallaBocadillo.php";
 
     //clic en el botón de bocadillo frío
     botonFrio.addEventListener("click", function () {

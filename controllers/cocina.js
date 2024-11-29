@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 
-    const url = "http://localhost/mi_bocadillo/sw_cocina.php";
+    const url = "sw_cocina.php";
     listarPedidos();
     function listarPedidos() {
         const data = { action: "listarPedidos" };
