@@ -20,7 +20,7 @@ class Pedido
             FROM bocadillo 
             WHERE dia = DAYNAME(NOW()) AND frio = :frio AND f_baja IS NULL
         ");
-        $stmt->bindParam(':frio', $tipo_bocadillo_valor); // Bocadillo frío (1) o caliente (0)
+        $stmt->bindParam(':frio', $tipo_bocadillo_valor);
         $stmt->execute();
 
         //se almacena el bocadillo en una variable
