@@ -39,12 +39,12 @@ try {
         case 'eliminarPedido':
             $eliminarPedido = new Pedido();
 
-            $resultado = $eliminarPedido->eliminarPedido($data['fecha']);
+            $resultado = $eliminarPedido->insertarFechaPedido($data['fecha']);
 
             if ($resultado) {
                 echo json_encode([
                     'success' => true,
-                    'message' => "Pedido eliminado correctamente."
+                    'message' => "Pedido insertado correctamente."
                 ]);
             } else {
                 echo json_encode([

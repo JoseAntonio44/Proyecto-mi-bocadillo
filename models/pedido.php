@@ -65,8 +65,8 @@ class Pedido {
     
     
     
-    public function eliminarPedido($fecha) {
-        $stmt = $this->db->prepare("DELETE FROM pedido WHERE fecha = :fecha");
+    public function insertarFechaPedido($fecha) {
+        $stmt = $this->db->prepare("UPDATE pedido SET f_recogido = NOW() WHERE fecha = :fecha");
         $stmt->bindParam(':fecha', $fecha);
 
         
@@ -79,7 +79,7 @@ class Pedido {
         
     }
     public function listarPedidos() {
-        $stmt = $this->db->prepare("SELECT * FROM pedido ORDER BY fecha");
+        $stmt = $this->db->prepare("SELECT * FROM pedido WHERE DATE(fecha) = CURDATE() and f_recogido is null ORDER BY fecha DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

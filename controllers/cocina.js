@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         boton.className = "btn btn-success"; //Clase de bootstrap para darle estilo al boton
                         boton.onclick = (function (index) {
                             return function () {
+                                listarPedidos();
                                 console.log("Botón de la fila " + index + " presionado");
 
 
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     .then(response => response.json())
                                     .then(json => {
                                         if (json.success) {
-                                            console.log("Pedido eliminado con éxito.");
+                                            console.log("Pedido insertado con éxito.");
                                             listarPedidos(); // Actualiza la lista después de eliminar
                                             document.getElementById("mensaje").textContent = json.message;
                                         } else {
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     })
                                     .catch(error => console.error("Error en la solicitud:", error));
                             };
+                        
                         })(i);//i del for para que sepa que fila es
 
                         celda5.appendChild(boton);
