@@ -7,7 +7,10 @@ header('Content-Type: application/json');
 session_start();
 
 require 'inc/auth.inc.php';
-require 'models/cocina.php';
+require 'models/Pedido.php';
+require 'models/Bocadillo.php';
+require 'models/Usuario.php';
+
 
 $data = json_decode(file_get_contents('php://input'), true);
 $action = isset($data['action']) ? $data['action'] : 'listarPedidos';
@@ -22,8 +25,8 @@ if (!isset($_SESSION['id_usuario'])) {
 try {
     switch ($action) {
         case 'listarPedidos':
-            $cocina = new cocina();
-            $resultado = $cocina->listarPedidos(); // Llama al metodo listarPedidos() de la clase cocina
+            $listarPedidos = new Pedido();
+            $resultado = $listarPedidos->listarPedidos(); // Llama al metodo listarPedidos() de la clase cocina
 
             if ($resultado) {
                 echo json_encode([
@@ -34,9 +37,9 @@ try {
             }
             break;
         case 'eliminarPedido':
-            $cocina = new Cocina();
+            $eliminarPedido = new Pedido();
 
-            $resultado = $cocina->eliminarPedido($data['fecha']);
+            $resultado = $eliminarPedido->eliminarPedido($data['fecha']);
 
             if ($resultado) {
                 echo json_encode([
@@ -51,8 +54,8 @@ try {
             }
             break;
         case 'listarBocadillosSemanales':
-            $cocina = new cocina();
-            $resultado = $cocina->listarBocadillosSemanales();
+            $listarBocadillosSemanales = new Bocadillo();
+            $resultado = $listarBocadillosSemanales->listarBocadillosSemanales();
             if ($resultado) {
                 echo json_encode([
                     'success' => true,

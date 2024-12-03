@@ -7,7 +7,10 @@ header('Content-Type: application/json');
 session_start();
 
 require_once 'inc/auth.inc.php';
-require 'models/pedido.php';
+require 'inc/auth.inc.php';
+require 'models/Pedido.php';
+require 'models/Bocadillo.php';
+require 'models/Usuario.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $action = isset($data['action']) ? $data['action'] : 'hacerPedido';
@@ -60,7 +63,7 @@ try {
             break;
 
         case "mostrarBocadillos":
-            $mostrarBocadillos = new Pedido();
+            $mostrarBocadillos = new Bocadillo();
             $resultado = $mostrarBocadillos->traerBocadillos();
 
             if ($resultado) {
@@ -78,7 +81,7 @@ try {
             break;
 
         case "mostrarNombre":
-            $traerNombre = new Pedido();
+            $traerNombre = new Usuario();
             $resultado = $traerNombre->traerNombre($_SESSION['id_usuario']);
 
             if ($resultado) {

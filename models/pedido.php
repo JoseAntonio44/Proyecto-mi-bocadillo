@@ -62,28 +62,26 @@ class Pedido {
             return false;
         }
     }
-    public function traerBocadillos(){
-        $stmt = $this->db->prepare("
-        select *
-        from bocadillo
-        where dia = DAYNAME(NOW());
-    ");
-    $stmt->execute();
     
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna un array asociativo con los resultados
+    
+    
+    public function eliminarPedido($fecha) {
+        $stmt = $this->db->prepare("DELETE FROM pedido WHERE fecha = :fecha");
+        $stmt->bindParam(':fecha', $fecha);
 
-
-
+        
+        if ($stmt->execute()) {
+            return true; 
+        } else {
+            return false;
+        }
+        
+        
     }
-    public function traerNombre($id_alumno){
-        $stmt = $this->db->prepare("
-            select nombre
-            from alumno
-            where id_usuario = :id_usuario
-        ");
-        $stmt->bindParam(':id_usuario', $id_alumno);
+    public function listarPedidos() {
+        $stmt = $this->db->prepare("SELECT * FROM pedido ORDER BY fecha");
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>
