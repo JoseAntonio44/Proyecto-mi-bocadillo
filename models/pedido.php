@@ -66,8 +66,6 @@ class Pedido
         }
     }
     
-    
-    
     public function insertarFechaPedido($fecha) {
         $stmt = $this->db->prepare("UPDATE pedido SET f_recogido = NOW() WHERE fecha = :fecha");
         $stmt->bindParam(':fecha', $fecha);

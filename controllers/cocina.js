@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     })
                                     .catch(error => console.error("Error en la solicitud:", error));
                             };
-                        
+
                         })(i);//i del for para que sepa que fila es
 
                         celda5.appendChild(boton);
@@ -148,5 +148,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(error => console.error("Error al verificar autenticación:", error));
+    }
+    bocadilloAPreparar();
+    function bocadilloAPreparar() {
+        const data = { action: "bocadillosTotal" }
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                if (json.success) {
+                    console.log(json);
+                    document.getElementById('bocadillosFrios').innerHTML=json.data[0].id_bocadillo;
+                    document.getElementById('cantidadFrios').innerHTML=json.data[0].numero;
+                    document.getElementById('bocadillosCalientes').innerHTML=json.data[1].id_bocadillo;
+                    document.getElementById('cantidadcalientes').innerHTML=json.data[1].numero;
+                } else {
+                    console.log("Error en la solicitud", json.message);
+                }
+            })
+            .catch(error => console.error("Error contar:", error));
     }
 });

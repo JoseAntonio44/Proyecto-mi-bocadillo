@@ -75,6 +75,25 @@ try {
                 "message" => "Usuario autenticado."
             ]);
             break;
+        case "bocadillosTotal":
+
+            $numeroBocadillos = new Bocadillo();
+
+            $resultado = $numeroBocadillos->contarBocadillos();
+
+                if($resultado){
+                    echo json_encode([
+                        'success' => true,
+                        'message' => "Bocadillos contados correctamente.",
+                        'data' => $resultado
+                    ]);
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => "Error al contar los bocadillos."
+                    ]);
+                }
+            break;
         default:
             echo json_encode([
                 "success" => false,
