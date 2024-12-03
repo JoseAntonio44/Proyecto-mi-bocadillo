@@ -1,29 +1,77 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const botonFrio = document.getElementById("botonBocadilloFrio");
-
     const url = "sw_pantallaBocadillo.php";
 
-    //clic en el botón de bocadillo frío
-    botonFrio.addEventListener("click", function () {
-        const getElementById = document.getElementById("exampleModal");
+    confirmarPedido();
+    function confirmarPedido() {
+        const botonFrio = document.getElementById("botonBocadilloFrio");
+        const botonCaliente = document.getElementById("botonBocadilloCaliente");
+        const botonConfirmar = document.getElementById("confirmar");
+        const botonCancelar = document.getElementById("cancelar");
 
-        const confirmacion = confirm("¿Deseas confirmar el pedido de bocadillo frío del día?");
-        if (confirmacion) {
-            hacerPedido("frio");
+        let tipoSeleccionado = null;
+
+        botonFrio.addEventListener("click", function () {
+            tipoSeleccionado = "frio";
+            mostrarSeleccion(tipoSeleccionado);
         }
-    });
-    const botonCaliente = document.getElementById("botonBocadilloCaliente");
-    botonCaliente.addEventListener("click", function () {
-        const confirmacion = confirm("¿Deseas confirmar el pedido de bocadillo caliente del día?");
-        if (confirmacion) {
-            hacerPedido("caliente");
-        }
-    });
+
+        );
+        botonCaliente.addEventListener("click", function () {
+            tipoSeleccionado = "caliente";
+            mostrarSeleccion(tipoSeleccionado);
+        });
+
+        
+
+        botonConfirmar.addEventListener("click", function () {
+            if (tipoSeleccionado) {
+                hacerPedido(tipoSeleccionado);
+            } else {
+                alert("Por favor, selecciona un tipo de bocadillo antes de confirmar.");
+            }
+        });
+
+        botonCancelar.addEventListener("click", function () {
+            tipoSeleccionado = null;
+            document.getElementById('bocadilloSeleccionado').innerHTML = "Ha cancelado el pedido. Seleccione un bocadillo por favor";
+            document.getElementById('precioSeleccionado').innerHTML = "";
+        });
+    }
+
+    function mostrarSeleccion(tipo) {
+        //Promesa para traer el bocadillo seleccionado y sus detalles
+        const data = { action: "mostrarBocadillos" };
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })  
+            .then(response => response.json())
+            .then(json => {
+                if (json.success) {
+                    console.log(tipo);
+                    if(tipo == "frio"){
+                        document.getElementById('bocadilloSeleccionado').innerHTML = json.data[0].nombre;
+                        document.getElementById('precioSeleccionado').innerHTML = json.data[0].pvp;
+                    }else if(tipo == "caliente"){
+                        document.getElementById('bocadilloSeleccionado').innerHTML = json.data[1].nombre;
+                        document.getElementById('precioSeleccionado').innerHTML = json.data[1].pvp;
+                    }else if(tipo == null){
+                        document.getElementById('bocadilloSeleccionado').innerHTML = "Seleccione un bocadillo";
+                    }
+                
+                } else {
+                    document.getElementById('mensajePedido').innerHTML = json.message;
+                }
+            })
+    }
 
     function hacerPedido(tipo) {
-        const data = { tipo_bocadillo: tipo, action: "hacerPedido" };
 
+        const data = { action: "comprobarPedidosUsuario" };
         fetch(url, {
             method: "POST",
             body: JSON.stringify(data),
@@ -34,15 +82,33 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(json => {
                 if (json.success) {
-                    alert("Pedido realizado con éxito: " + json.message);
+                    document.getElementById('mensajePedido').innerHTML = "No puede realizar otro pedido el dia de hoy";
                 } else {
-                    alert("Error al realizar el pedido: " + json.message);
+                    const dataHacerPedido = { tipo_bocadillo: tipo, action: "hacerPedido" };
+                    fetch(url, {
+                        method: "POST",
+                        body: JSON.stringify(dataHacerPedido),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(json => {
+                            if (json.success) {
+                                document.getElementById('mensajePedido').innerHTML = json.message;
+                            } else {
+                                document.getElementById('mensajePedido').innerHTML = json.message;
+                            }
+                        })
+                        .catch(error => console.error("Error en la solicitud:", error));
                 }
             })
             .catch(error => console.error("Error en la solicitud:", error));
+        
+       
     }
 
-    
+
 
     mostrarBocadillos();
     function mostrarBocadillos() {
@@ -61,31 +127,31 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(json => {
                 console.log(json)
                 if (json.success) {
-                    if(json.data.length >= 1) {
-                        
-                        if(json.data[0].disponible == 0) {
+                    if (json.data.length >= 1) {
+
+                        if (json.data[0].disponible == 0) {
                             document.getElementById('bocadilloFrio').innerHTML = "Bocadillo frío no disponible";
                             document.getElementById('bocadilloCaliente').innerHTML = "Bocadillo caliente no disponible";
-                        }else{
+                        } else {
                             document.getElementById('bocadilloFrio').innerHTML = json.data[0].nombre;
                             document.getElementById('bocadilloCaliente').innerHTML = json.data[1].nombre;
                         }
                     }
                     document.getElementById('ingredientesFrio').innerHTML = json.data[0].ingredientes;
                     document.getElementById('ingredientesCaliente').innerHTML = json.data[1].ingredientes;
-                    
+
                     document.getElementById('alergenoFrio').innerHTML = json.data[0].id_alergeno;
                     document.getElementById('alergenoCaliente').innerHTML = json.data[1].id_alergeno;
 
                     document.getElementById('precioFrio').innerHTML = json.data[0].pvp;
                     document.getElementById('precioCaliente').innerHTML = json.data[1].pvp;
-                    
-                
+
+
                 }
             })
             .catch(error => console.error("Error en la solicitud:", error));
     }
-    
+
     mostrarNombre();
     function mostrarNombre() {
         const data = { action: "mostrarNombre" };

@@ -33,7 +33,7 @@ try {
 
             if ($hora >= '09:00' && $hora <= '22:00') {
                 if ($tipo_bocadillo) {
-                    
+
                     $pedido = new Pedido();
                     $resultado = $pedido->registrarPedidoDelDia($_SESSION['id_usuario'], $tipo_bocadillo);
 
@@ -102,6 +102,22 @@ try {
                 "success" => true,
                 "message" => "Usuario autenticado."
             ]);
+            break;
+        case "comprobarPedidosUsuario":
+            $comprobarPedidos = new Pedido();
+            $resultado = $comprobarPedidos->comprobarPedidosUsuario($_SESSION['id_usuario']);
+
+            if ($resultado) {
+                echo json_encode([
+                    "success" => true,
+                    "msg" => "Hoy ya se ha realizado un pedido"
+                ]);
+            }else{
+                echo json_encode([
+                    "success" => false,
+                    "msg" => "Pedidos no encontrados"
+                ]);
+            }
             break;
 
         default:
