@@ -23,4 +23,9 @@ class Bocadillo
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function contarBocadillos() {
+        $stmt = $this->db->prepare("SELECT COUNT(id_bocadillo) as numero, id_bocadillo FROM pedido WHERE DATE(fecha) = CURDATE() GROUP BY id_bocadillo");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
